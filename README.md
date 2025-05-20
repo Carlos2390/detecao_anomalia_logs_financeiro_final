@@ -1,8 +1,11 @@
 # 📊 Detecção de Anomalias em Logs Financeiros
 
-Uma aplicação Streamlit para detecção e análise de anomalias em logs de operações financeiras utilizando modelos de Machine Learning e técnicas de interpretabilidade.
+Uma aplicação Streamlit para detecção e análise de anomalias em logs de operações financeiras utilizando modelo de Machine Learning e técnicas de interpretabilidade.
 
 ## Aplicação: https://kzmp5s414cv9om89o0uo.lite.vusercontent.net
+![Design sem nome (3)](https://github.com/user-attachments/assets/f6785eb4-f4f2-4a6d-bdd6-53a8670400af)
+
+
 
 ## ✨ Funcionalidades
 
