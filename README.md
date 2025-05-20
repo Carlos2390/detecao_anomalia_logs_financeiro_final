@@ -2,10 +2,7 @@
 
 Uma aplicação Streamlit para detecção e análise de anomalias em logs de operações financeiras utilizando modelo de Machine Learning e técnicas de interpretabilidade.
 
-## Aplicação: https://kzmp5s414cv9om89o0uo.lite.vusercontent.net
 ![Design sem nome (3)](https://github.com/user-attachments/assets/f6785eb4-f4f2-4a6d-bdd6-53a8670400af)
-
-
 
 ## ✨ Funcionalidades
 
@@ -40,3 +37,6 @@ Uma aplicação Streamlit para detecção e análise de anomalias em logs de ope
 4. **Configuração**:
  - Insira a URL da API na sidebar (ex: https://banco-facul.onrender.com/logs)
  - Selecione features e ajuste parâmetros
+
+
+## Sistema financeiro de exemplo para geração de logs:  https://kzmp5s414cv9om89o0uo.lite.vusercontent.net
