@@ -1,0 +1,1 @@
+# detecao_anomalia_logs_financeiro_final
