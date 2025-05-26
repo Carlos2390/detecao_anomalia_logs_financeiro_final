@@ -5,6 +5,12 @@ from data.loader import load_logs
 from data.preprocessing import preprocess
 from visualization.charts import plot_score_distribution, plot_pca_projection
 from visualization.explainability import explain_isolation_forest
+from visualization.financial_charts import (
+    plot_login_patterns,
+    plot_transfer_anomalies,
+    plot_anomaly_summary,
+    plot_login_time_patterns
+)
 
 # -- Configurações de página --
 st.set_page_config(page_title="Detecção de Anomalias em Logs", layout="wide")
@@ -85,3 +91,21 @@ st.dataframe(
 )
 
 st.success("Análise de anomalias completa!")
+
+st.header("📈 Análises Específicas para Contexto Financeiro")
+
+st.subheader("🔐 Análise de Padrões de Login")
+fig_login = plot_login_patterns(logs)
+st.pyplot(fig=fig_login)
+
+st.subheader("💸 Detecção de Transferências Anômalas")
+fig_transfer = plot_transfer_anomalies(logs, scores)
+st.pyplot(fig=fig_transfer)
+
+st.subheader("📊 Resumo de Anomalias por Operação")
+fig_summary = plot_anomaly_summary(logs, preds, scores)
+st.pyplot(fig=fig_summary)
+
+st.subheader("🕒 Análise de Horários de Login")
+fig_login_time = plot_login_time_patterns(logs)
+st.pyplot(fig=fig_login_time)
