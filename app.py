@@ -13,7 +13,7 @@ from visualization.financial_charts import (
 )
 
 # -- Configurações de página --
-st.set_page_config(page_title="Detecção de Anomalias em Logs", layout="wide")
+st.set_page_config(page_title="Detecção de Anomalias em Logs", layout="wide", page_icon="./icone/icone_bank_sentinel.png")
 st.title("📊 Detecção e Exploração de Anomalias em Logs Financeiros")
 
 # URL da API (configurável na sidebar)
