@@ -113,7 +113,7 @@ def plot_transfer_anomalies(logs_df, anomaly_scores):
 
     # Adicionar colorbar para score de anomalia
     cbar = plt.colorbar(scatter)
-    cbar.set_label('Score de Anomalia (valores menores = mais anômalo)', fontsize=10)
+    cbar.set_label('Score de Anomalia', fontsize=10)
 
     # Adicionar linhas de grade
     ax.grid(True, linestyle='--', alpha=0.7)

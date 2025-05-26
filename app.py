@@ -1,4 +1,6 @@
 import streamlit as st
+from streamlit_autorefresh import st_autorefresh
+from datetime import datetime
 
 from algorithms.isolation_forest import train_isolation_forest
 from data.loader import load_logs
@@ -14,13 +16,56 @@ from visualization.financial_charts import (
 
 # -- Configurações de página --
 st.set_page_config(page_title="Detecção de Anomalias em Logs", layout="wide", page_icon="./icone/icone_bank_sentinel.png")
-st.title("📊 Detecção e Exploração de Anomalias em Logs Financeiros")
 
-# URL da API (configurável na sidebar)
+col1, col2, col3 = st.columns([1, 2, 1])
+
+with col1:
+    st.write("")
+
+with col2:
+    st.image("./icone/icone_bank_sentinel.png")
+
+with col3:
+    st.write("")
+
+st.title("Detecção e Exploração de Anomalias em Logs Financeiros")
+
+# -- Sidebar Config --
+st.sidebar.header("Configurações de Dados")
 api_url = st.sidebar.text_input(
     label="URL da API de Logs:",
     value="https://banco-facul.onrender.com/logs"
 )
+
+# Configuração de recarga automática
+st.sidebar.header("Recarga Automática")
+auto_reload = st.sidebar.checkbox("Ativar recarga automática", value=False)
+reload_interval = st.sidebar.slider(
+    "Intervalo de recarga (segundos)",
+    min_value=10,
+    max_value=600,
+    value=60,
+    step=10
+)
+
+# Recarregar automaticamente usando st_autorefresh
+if auto_reload:
+    load_logs.clear()
+    count = st_autorefresh(interval=reload_interval * 1000, key="auto_reload")
+    st.sidebar.write(f"🔄 Página recarregada automaticamente {count} vezes.")
+else:
+    st.sidebar.write("✅ Recarga automática desativada.")
+
+# Botão de recarregar manualmente
+if st.sidebar.button("🔄 Recarregar Logs Agora"):
+    load_logs.clear()
+    st.rerun()
+
+# Exibir momento da última atualização
+st.sidebar.markdown("---")
+st.sidebar.write(f"**Última atualização:** {datetime.now().strftime('%d/%m/%Y %H:%M:%S')}")
+
+# -- Carregar os logs --
 logs = load_logs(api_url)
 
 # -- Exibição inicial --
