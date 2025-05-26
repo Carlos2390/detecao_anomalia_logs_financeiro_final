@@ -129,7 +129,9 @@ if 'data' in logs.columns:
     st.line_chart(ts)
 
 st.subheader("Registros Anômalos Detectados")
-cols_show = ['id', 'data'] + features + ['anomaly_score']
+cols_show = ['id', 'data', 'descricao'] + features + ['anomaly_score']
+if 'transferencia' in logs['descricao'].unique():
+    cols_show.append('valor')
 st.dataframe(
     logs[logs['anomaly'] == -1][cols_show]
     .sort_values('anomaly_score')
