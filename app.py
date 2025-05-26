@@ -1,11 +1,12 @@
 import streamlit as st
 from streamlit_autorefresh import st_autorefresh
 from datetime import datetime
+import matplotlib.pyplot as plt
 
 from algorithms.isolation_forest import train_isolation_forest
 from data.loader import load_logs
-from data.preprocessing import preprocess
-from visualization.charts import plot_score_distribution, plot_pca_projection
+from data.preprocessing import preprocess, preprocess_transfer_values, extract_time_features
+from visualization.charts import plot_score_distribution, plot_pca_projection, plot_hourly_anomalies
 from visualization.explainability import explain_isolation_forest
 from visualization.financial_charts import (
     plot_login_patterns,
@@ -67,6 +68,8 @@ st.sidebar.write(f"**Última atualização:** {datetime.now().strftime('%d/%m/%Y
 
 # -- Carregar os logs --
 logs = load_logs(api_url)
+logs = preprocess_transfer_values(logs)
+logs = extract_time_features(logs)
 
 # -- Exibição inicial --
 st.markdown(f"**Total de registros:** {len(logs)}")
@@ -125,8 +128,35 @@ st.pyplot(fig=fig_pca)
 
 if 'data' in logs.columns:
     st.subheader("Série Temporal de Anomaly Score")
-    ts = logs.set_index('data')['anomaly_score'].resample('D').mean()
-    st.line_chart(ts)
+
+    # Filtrar apenas anomalias (anomaly = -1)
+    anomalies_only = logs[logs['anomaly'] == -1].copy()
+
+    # Criar figura com Matplotlib para maior controle
+    fig, ax = plt.subplots(figsize=(12, 6))
+
+    # Plotar cada anomalia como um ponto
+    ax.scatter(anomalies_only['data'], anomalies_only['anomaly_score'],
+               color='red', s=50, alpha=0.7)
+
+    # Adicionar linha conectando os pontos para visualizar tendência
+    ax.plot(anomalies_only['data'], anomalies_only['anomaly_score'],
+            color='gray', alpha=0.5, linestyle='--')
+
+    # Formatação
+    ax.set_title('Série Temporal de Anomaly Score (Anomalias Individuais)')
+    ax.set_ylabel('Anomaly Score')
+    ax.set_xlabel('Data')
+
+    # Rotacionar datas para melhor visualização
+    plt.xticks(rotation=45)
+
+    # Adicionar grade
+    ax.grid(True, linestyle='--', alpha=0.7)
+    plt.tight_layout()
+
+    # Exibir gráfico
+    st.pyplot(fig)
 
 st.subheader("Registros Anômalos Detectados")
 
@@ -147,6 +177,11 @@ st.dataframe(
     logs[logs['anomaly'] == -1][cols_show]
     .sort_values('anomaly_score')
 )
+
+# Adicione esta seção antes do st.success()
+st.subheader("🕰️ Análise de Anomalias por Horário")
+fig_hour_anomalies = plot_hourly_anomalies(logs)
+st.pyplot(fig=fig_hour_anomalies)
 
 st.success("Análise de anomalias completa!")
 
