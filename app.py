@@ -129,9 +129,11 @@ if 'data' in logs.columns:
     st.line_chart(ts)
 
 st.subheader("Registros Anômalos Detectados")
-cols_show = ['id', 'data', 'descricao'] + features + ['anomaly_score']
-if 'transferencia' in logs['descricao'].unique():
+cols_show = ['id', 'data', 'tabela', 'tipo_operacao', 'descricao'] + features + ['anomaly_score']
+# Incluir a coluna 'valor' se 'valor' foi extraído em plot_transfer_anomalies E a tabela for 'transferencia'
+if 'valor' in logs.columns: # Check if 'valor' column exists after plot_transfer_anomalies
     cols_show.append('valor')
+cols_show.append('dados_novos') # Adicionar a coluna 'dados_novos'
 st.dataframe(
     logs[logs['anomaly'] == -1][cols_show]
     .sort_values('anomaly_score')
