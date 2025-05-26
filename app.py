@@ -130,18 +130,19 @@ if 'data' in logs.columns:
 
 st.subheader("Registros Anômalos Detectados")
 
-# Inicializar a lista de colunas a serem exibidas
-cols_show = ['id', 'data']
+# Use um conjunto para garantir unicidade das colunas
+cols_set = {'id', 'data', 'anomaly_score'}
 
-# Adicionar colunas base e as selecionadas em features, garantindo unicidade
-cols_show.extend([col for col in ['tabela', 'tipo_operacao', 'descricao', 'user_id'] if col in logs.columns and col not in cols_show])
-cols_show.extend([col for col in features if col not in cols_show])
+# Adicionar colunas de features
+cols_set.update([col for col in features if col in logs.columns])
 
-# Adicionar colunas de score e, se aplicável, valor e dados_novos
-cols_show.append('anomaly_score')
-if 'valor' in logs.columns:
-    cols_show.append('valor')
-cols_show.append('dados_novos')
+# Adicionar 'dados_novos' se a tabela for 'transferencia' (embora o filtro seja feito depois, a coluna precisa estar presente para visualização)
+if 'dados_novos' in logs.columns:
+    cols_set.add('dados_novos')
+
+# Converter o conjunto de volta para uma lista para manter uma ordem razoável (essenciais primeiro)
+cols_show = ['id', 'data', 'anomaly_score'] + sorted(list(cols_set - {'id', 'data', 'anomaly_score'}))
+
 st.dataframe(
     logs[logs['anomaly'] == -1][cols_show]
     .sort_values('anomaly_score')
