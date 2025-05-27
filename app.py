@@ -122,9 +122,9 @@ st.subheader("Distribuição de Scores")
 fig_hist = plot_score_distribution(logs['anomaly_score'])
 st.pyplot(fig=fig_hist)
 
-st.subheader("PCA 2D para Anomalias")
-fig_pca = plot_pca_projection(X, preds, random_state)
-st.pyplot(fig=fig_pca)
+#st.subheader("PCA 2D para Anomalias")
+#fig_pca = plot_pca_projection(X, preds, random_state)
+#st.pyplot(fig=fig_pca)
 
 if 'data' in logs.columns:
     st.subheader("Série Temporal de Anomaly Score")
