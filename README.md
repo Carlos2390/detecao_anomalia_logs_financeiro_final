@@ -68,6 +68,12 @@ A estrutura a seguir é um exemplo. Vocês devem usar a estrutura do seu projeto
 ## Sistema financeiro de exemplo para geração de logs:  https://kzmp5s414cv9om89o0uo.lite.vusercontent.net
 ---
 
+## 📸 Demonstração
+
+[STREAMLIT](https://carlos2390-detecao-anomalia-logs-financeiro-final-app-kruthl.streamlit.app/)
+
+---
+
 ## 👥 Equipe
 
 | Nome | GitHub |
