@@ -1,27 +1,53 @@
 # 📊 Detecção de Anomalias em Logs Financeiros
 
-Uma aplicação Streamlit para detecção e análise de anomalias em logs de operações financeiras utilizando modelo de Machine Learning e técnicas de interpretabilidade.
+Este projeto implementa uma aplicação Streamlit para carregar, pré-processar e analisar logs de operações financeiras, com foco na detecção de anomalias utilizando modelos de Machine Learning e técnicas de interpretabilidade para identificar padrões incomuns em dados financeiros.
 
 ![Design sem nome (3)](https://github.com/user-attachments/assets/f6785eb4-f4f2-4a6d-bdd6-53a8670400af)
 
-## ✨ Funcionalidades
+---
 
-- **Conexão com API**: Carrega dados em tempo real de endpoints REST
-- **Pré-processamento Automático**:
-  - Conversão de features categóricas
-  - Imputação de valores faltantes
-  - Normalização com StandardScaler
-- **Visualizações Interativas**:
-  - Histograma de scores de anomalia
-  - Projeção PCA 2D para análise multivariada
-  - Gráfico temporal
-- **Explicabilidade**:
-  - Explicações locais com SHAP
+## 🎯 Objetivo
 
+O objetivo principal deste projeto é desenvolver uma ferramenta interativa para análise de logs financeiros capaz de identificar transações ou comportamentos anômalos. A aplicação visa facilitar a compreensão e a investigação de atividades suspeitas em dados financeiros através de visualizações intuitivas e explicações sobre as detecções realizadas pelo modelo de Machine Learning. Este projeto se relaciona com o conteúdo da disciplina ao aplicar conceitos de processamento de dados, aprendizado de máquina para detecção de padrões e técnicas de visualização para análise exploratória.
+
+---
+
+## 👨‍💻 Tecnologias Utilizadas
+
+Liste as principais tecnologias, linguagens, frameworks e bibliotecas utilizadas:
+
+ - Python 3.12
+ - Streamlit
+ - Pandas
+ - Scikit-learn
+ - Plotly
+ - Requests
+
+---
+
+## 🗂️ Estrutura do Projeto
+
+Caso o projeto tenha uma estrutura de pastas significativa, insira aqui um diagrama com os diretórios principais:
+
+A estrutura a seguir é um exemplo. Vocês devem usar a estrutura do seu projeto obrigatóriamente. 
+```
+📦 detecao_anomalia_logs_financeiro_final
+├── 📁 app
+│   ├── algorithms/
+│   ├── data/
+│   ├── icone/
+│   └── utils/
+│   └── visualization/
+│   └── app.py
+├── README.md
+└── requirements.txt
+```
+
+---
 ## 🚀 Como Executar
 
 1. **Pré-requisitos**:
-   - Python 3.8+
+   - Python
    - Gerenciador de pacotes (pip/conda)
 
 2. **Instalação**:
@@ -40,3 +66,32 @@ Uma aplicação Streamlit para detecção e análise de anomalias em logs de ope
 
 
 ## Sistema financeiro de exemplo para geração de logs:  https://kzmp5s414cv9om89o0uo.lite.vusercontent.net
+---
+
+## 👥 Equipe
+
+| Nome | GitHub |
+|------|--------|
+| Carlos Matos | [@carlos2390](https://github.com/carlos2390) |
+| Gustavo Taglianetti | [@GustavoTagli](https://github.com/GustavoTagli) |
+
+---
+
+## 🧠 Disciplinas Envolvidas
+
+- Estrutura de Dados I
+- Teoria dos Grafos
+- Linguagens Formais e Autômatos
+
+---
+
+## 🏫 Informações Acadêmicas
+
+- Universidade: **Universidade Braz Cubas**
+- Curso: **Ciência da Computação / Análise e Desenvolvimento de Sistemas**
+- Semestre: 7º
+- Período: Noite
+- Professora orientadora: **Dra. Andréa Ono Sakai**
+- Evento: **Mostra de Tecnologia 1º Semestre de 2025**
+- Local: Laboratório 12
+- Datas: 05 e 06 de junho de 2025
